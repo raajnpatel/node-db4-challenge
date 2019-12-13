@@ -32,7 +32,7 @@ exports.up = function(knex) {
                   .inTable('ingredients')
                   .onDelete('CASCADE')
                   .onUpdate('CASCADE');
-              tbl.integer('ingredient_quantity')
+              tbl.string('ingredient_quantity')
                   .notNullable()
           })
 
@@ -55,11 +55,9 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return (
-      knex.schema
+  return knex.schema
           .dropTableIfExists("instructions")
           .dropTableIfExists("recipe_ingredients")
           .dropTableIfExists("ingredients")
-          .dropTableIfExists("recipes")
-  )
+          .dropTableIfExists("recipes");
 };
